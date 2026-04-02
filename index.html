@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COF - Inteligência Preditiva de Capital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="bg-blur-1"></div>
+        <div class="bg-blur-2"></div>
+        <div class="container">
+            <header>
+                <div class="logo-section">
+                    <div class="logo">
+                        <div class="icon">⚡</div>
+                        <h1>COF<span>.</span></h1>
+                    </div>
+                    <p>Inteligência Preditiva de Capital</p>
+                </div>
+                <nav>
+                    <button id="calc-tab" class="tab active">📊 Simulador</button>
+                    <button id="formulas-tab" class="tab">📖 Glossário</button>
+                </nav>
+            </header>
+
+            <section id="calc-section" class="section active">
+                <div class="calc-content">
+                    <div class="left-panel">
+                        <div class="regime-toggle">
+                            <button id="simples-btn" class="regime-btn">simples</button>
+                            <button id="composto-btn" class="regime-btn active">composto</button>
+                        </div>
+
+                        <div class="target-selection">
+                            <h2>Selecionar Alvo</h2>
+                            <div class="targets">
+                                <button id="FV-btn" class="target-btn active" data-target="FV">📈 Montante</button>
+                                <button id="PV-btn" class="target-btn" data-target="PV">🏦 Capital</button>
+                                <button id="i-btn" class="target-btn" data-target="i">📊 Taxa</button>
+                                <button id="n-btn" class="target-btn" data-target="n">⏰ Tempo</button>
+                            </div>
+                        </div>
+
+                        <div class="inputs">
+                            <div id="pv-input" class="input-group">
+                                <label for="pv">Valor Presente (PV)</label>
+                                <input type="number" id="pv" value="1000" min="0" step="0.01" aria-describedby="pv-help">
+                                <span>€</span>
+                                <div id="pv-help" class="sr-only">Valor inicial do investimento</div>
+                            </div>
+                            <div id="fv-input" class="input-group">
+                                <label for="fv">Valor Futuro (FV)</label>
+                                <input type="number" id="fv" value="1200" min="0" step="0.01" aria-describedby="fv-help">
+                                <span>€</span>
+                                <div id="fv-help" class="sr-only">Valor desejado ao final do período</div>
+                            </div>
+                            <div id="i-input" class="input-group">
+                                <label for="i">Taxa Mensal (i)</label>
+                                <input type="number" id="i" value="5" min="0" step="0.01" aria-describedby="i-help">
+                                <span>%</span>
+                                <div id="i-help" class="sr-only">Taxa de juros mensal</div>
+                            </div>
+                            <div id="n-input" class="input-group">
+                                <label for="n">Período (n)</label>
+                                <input type="number" id="n" value="12" min="1" step="1" aria-describedby="n-help">
+                                <span>m</span>
+                                <div id="n-help" class="sr-only">Número de meses</div>
+                            </div>
+                            <button class="calculate-btn" type="button" aria-label="Calcular resultado">
+                                📊 Calcular
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <span class="label">Resultado</span>
+                                <h3 id="result-label">Montante Final (FV)</h3>
+                            </div>
+                            <div id="result-value" class="result-value">€1,200.00</div>
+                            <div class="insight">
+                                <p id="insight-text">Lucro de 20.0% sobre o capital inicial.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="formulas-section" class="section">
+                <div class="formulas-grid">
+                    <div class="formula-card">
+                        <h3>Juros Simples</h3>
+                        <p>Ideal para empréstimos de curto prazo onde os juros não rendem sobre juros acumulados.</p>
+                        <div class="formula">FV = PV × (1 + i × n)</div>
+                        <div class="variables">
+                            <div>FV: Montante Final</div>
+                            <div>PV: Capital Inicial</div>
+                            <div>i: Taxa (decimal)</div>
+                            <div>n: Período</div>
+                        </div>
+                    </div>
+                    <div class="formula-card">
+                        <h3>Juros Compostos</h3>
+                        <p>O modelo padrão do mercado financeiro moderno. O capital cresce exponencialmente.</p>
+                        <div class="formula">FV = PV × (1 + i)<sup>n</sup></div>
+                        <div class="variables">
+                            <div>FV: Montante Final</div>
+                            <div>PV: Capital Inicial</div>
+                            <div>i: Taxa Juro</div>
+                            <div>n: Tempo</div>
+                        </div>
+                    </div>
+                    <div class="formula-card advanced">
+                        <h3>Isolando o Tempo (n)</h3>
+                        <p>Use esta fórmula para descobrir quanto tempo deve esperar para atingir um objetivo financeiro.</p>
+                        <div class="formula">n = log(FV / PV) / log(1 + i)</div>
+                    </div>
+                    <div class="formula-card advanced">
+                        <h3>Isolando a Taxa (i)</h3>
+                        <p>Descubra qual a rentabilidade necessária para o seu investimento.</p>
+                        <div class="formula">i = (FV / PV)<sup>1/n</sup> - 1</div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>© 2026 Todos os direitos reservados para A parner all</p>
+            </footer>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
